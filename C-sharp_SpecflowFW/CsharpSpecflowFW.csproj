@@ -26,7 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="StepDefinations\RegisterSD.cs">
+    <Compile Update="StepDefinations\MultipleDatUsingTableSD.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="StepDefinations\ScenarioOutlineSD.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

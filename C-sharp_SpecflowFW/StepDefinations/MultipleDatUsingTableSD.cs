@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using TechTalk.SpecFlow;
-
+using TechTalk.SpecFlow.Assist;
 namespace CsharpSpecflowFW.StepDefinations
 {
     /**********************************************************************************************************
@@ -18,7 +18,7 @@ namespace CsharpSpecflowFW.StepDefinations
      * IWebDriver driver = new InternetExplorerDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
      ***********************************************************************************************************/
     [Binding]
-    public sealed class RegisterSD
+    public sealed class MultipleDatUsingTableSD
     {
         IWebDriver driver = null;
         [Given(@"i lunch the application")]
@@ -38,8 +38,25 @@ namespace CsharpSpecflowFW.StepDefinations
         [Then(@"i enter the last name")]
         public void ThenIEnterTheLastName(Table table)
         {
-            driver.FindElement(By.XPath("//input[@placeholder='Last Name']")).SendKeys("Black");
+            MdTableEmpDetails details = table.CreateInstance<MdTableEmpDetails>();           
+            driver.FindElement(By.XPath("//input[@placeholder='Last Name']")).SendKeys(details.lastName);
         }
+
+        [Then(@"i enter all the information")]
+        public void ThenIEnterAllTheInformation(Table table)
+        {
+            var details = table.CreateSet<MdTableEmpDetails>();
+            
+            foreach(var emp in details)
+            {
+                Console.WriteLine("**********************");
+                Console.WriteLine(emp.firstName);
+                Console.WriteLine(emp.lastName);
+                Console.WriteLine(emp.phoneNumber);
+                Console.WriteLine("**********************");
+            }
+        }
+
 
         [Then(@"i click the register")]
         public void ThenIClickTheRegister()

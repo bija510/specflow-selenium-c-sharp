@@ -74,14 +74,14 @@ namespace CsharpSpecflowFW.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Fill up the register form")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void FillUpTheRegisterForm()
+        [NUnit.Framework.DescriptionAttribute("Fill the Employee Name")]
+        [NUnit.Framework.CategoryAttribute("MultipleDataTable")]
+        public virtual void FillTheEmployeeName()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fill up the register form", null, new string[] {
-                        "mytag"});
+                    "MultipleDataTable"};
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fill the Employee Name", null, new string[] {
+                        "MultipleDataTable"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -119,6 +119,55 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 11
  testRunner.Then("i click the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Fill up the register form")]
+        public virtual void FillUpTheRegisterForm()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fill up the register form", null, ((string[])(null)));
+#line 13
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "firstName",
+                            "lastname",
+                            "phoneNumber"});
+                table2.AddRow(new string[] {
+                            "Adam",
+                            "john",
+                            "123456789"});
+                table2.AddRow(new string[] {
+                            "Bin",
+                            "lee",
+                            "123456789"});
+                table2.AddRow(new string[] {
+                            "David",
+                            "johnson",
+                            "123456789"});
+#line 15
+ testRunner.Then("i enter all the information", ((string)(null)), table2, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
