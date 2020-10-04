@@ -1,6 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +12,7 @@ using System.Text;
 using System.Threading;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using SpecFlow.Assist.Dynamic;
 namespace CsharpSpecflowFW.StepDefinations
 {
     /**********************************************************************************************************
@@ -21,18 +24,23 @@ namespace CsharpSpecflowFW.StepDefinations
     public sealed class MultipleDatUsingTableSD
     {
         IWebDriver driver = null;
+
         [Given(@"i lunch the application")]
         public void GivenILunchTheApplication()
         {
             driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             driver.Manage().Window.Maximize();
-            driver.Url = "http://demo.automationtesting.in/Register.html";            
+            driver.Url = "http://demo.automationtesting.in/Register.html";
+            Assert.IsTrue(driver.Title.ToLower().Contains("register"));
         }
 
         [Given(@"i enter the first name")]
         public void GivenIEnterTheFirstName()
         {
-            driver.FindElement(By.XPath("//input[@placeholder='First Name']")).SendKeys("Michal");
+            var firstNameTxtbx = driver.FindElement(By.XPath("//input[@placeholder='First Name']"));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@placeholder='First Name']")));
+            firstNameTxtbx.SendKeys("Michal");
         }
 
         [Then(@"i enter the last name")]
@@ -46,7 +54,7 @@ namespace CsharpSpecflowFW.StepDefinations
         public void ThenIEnterAllTheInformation(Table table)
         {
             var details = table.CreateSet<MdTableEmpDetails>();
-            
+
             foreach(var emp in details)
             {
                 Console.WriteLine("**********************");

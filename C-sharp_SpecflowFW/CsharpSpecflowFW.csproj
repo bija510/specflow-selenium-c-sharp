@@ -15,6 +15,7 @@
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="85.0.4183.8700" />
     <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.27.0" />
     <PackageReference Include="Selenium.WebDriver.IEDriver" Version="3.150.1.2" />
+    <PackageReference Include="Selenium.WebDriver.MSEdgeDriver" Version="85.0.564.41" />
     <PackageReference Include="SpecFlow" Version="3.1.97" />
     <PackageReference Include="SpecFlow.Assist.Dynamic" Version="1.4.2" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.1.97" />
@@ -22,10 +23,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Screenshot\" />
     <Folder Include="PageObjects\" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="StepDefinations\Hooks.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="StepDefinations\HooksAndScopeBindingSD.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="StepDefinations\MultipleDatUsingTableSD.cs">
       <SubType>Code</SubType>
     </Compile>
